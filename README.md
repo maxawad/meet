@@ -1,4 +1,46 @@
-[Root Ventures](root.vc) has a custom video conferencing app built on the [Daily](daily.co) API. You can use this on your own if you like. Fork the repo and modify to your heart's content.
+# Meet
+
+Meet is a small web app that gives each person or team their own permanent video call link, such as `https://your-site.example/lee`. Visitors open the link and land in a branded video room with no sign-up. It was built by [Root Ventures](https://root.vc) on top of the [Daily](https://daily.co) video API, and you can fork it and make it your own.
+
+## What it does
+
+- Turns every Daily room named `meet-<name>` into a simple link at `/<name>`.
+- Embeds the Daily call in a full-screen page with a header, a live clock in the visitor's time zone, and your logo.
+- Lets you set a title, loading background and header image per room, and brand colors and logos for the whole site, using environment variables and `src/brand.css`.
+
+## Tech stack
+
+React 16 (Create React App 3.4, not ejected), React Router 5, `daily-js` loaded from a CDN, `moment-timezone`, deployed as static files (Netlify recommended).
+
+## Status
+
+Working, but it needs a free Daily.co account and a few rooms created in the Daily dashboard before a call can start. Without a Daily subdomain the app builds and loads but cannot join a call. No API keys or secrets are needed: the only required setting is your public Daily subdomain.
+
+## Quick start
+
+```bash
+npm install
+REACT_APP_DAILY_SUBDOMAIN=your-daily-subdomain npm start
+```
+
+Then open `http://localhost:3000/<room>` where `meet-<room>` exists in your Daily account and is public.
+
+## Static build (for hosting a demo)
+
+```bash
+REACT_APP_DAILY_SUBDOMAIN=your-daily-subdomain npm run build
+```
+
+Serve the `build/` folder from any static host. All routes must fall back to `index.html`, which `public/_redirects` already does for Netlify (`/* /index.html 200`). The settings are baked in at build time, and everything is public in the browser, so never put secrets in `REACT_APP_*` variables.
+
+## Credits
+
+Created by [Root Ventures](https://github.com/rootvc/meet) (Lee Edwards and contributors) under the MIT license. This copy is hosted under the `maxawad` GitHub account. Video is provided by [Daily](https://daily.co).
+
+---
+
+## Original documentation
+
 
 ## Getting Started
 
